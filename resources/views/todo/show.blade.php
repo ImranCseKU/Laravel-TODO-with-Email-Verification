@@ -20,7 +20,11 @@
             </div>
 
             <a href="{{route('todos.edit', $todo->id)}}" class="btn btn-info my-2">Edit</a>
-            <a href="" class="btn btn-danger my-2">Delete</a>
+            <form class="d-inline" action="{{route('todos.destroy', $todo->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger my-2">Delete</button>
+            </form>
 
         </div>
     </div>
