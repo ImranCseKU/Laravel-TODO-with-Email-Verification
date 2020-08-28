@@ -1,20 +1,8 @@
 @extends('layouts.app')
 
-@section('title')
-    Todo list
-@endsection
 
 @section('title')
     Todo list
-@endsection
-
-@section('top-nav')
-    <li class="nav-item active">
-        <a class="nav-link" href="{{route('todos.index')}}">Todos <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('todos.create')}}">Add Todo</a>
-    </li>
 @endsection
 
 
