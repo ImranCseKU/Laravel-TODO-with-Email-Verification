@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTodoFormValidation;
 use Illuminate\Http\Request;
 use App\Todo;
 
@@ -34,9 +35,20 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTodoFormValidation $request)
     {
-        //
+        $data = request()->except('_token');
+
+        $todo = new Todo();
+        $todo->name = $data['name'];
+        $todo->description = $data['description'];
+        $todo->completed = false;
+
+        $todo->save();
+
+        // session()->flash("success", "Todo created successfully");
+
+        return redirect()->route('todos.index');
     }
 
     /**
