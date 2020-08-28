@@ -18,13 +18,17 @@
                     <ul class="list-group">
                         @foreach( $todos as $todo )
                             <li class="list-group-item">
-                                {{ $todo->name }}
+                                
 
-                                @if ( !$todo->completed)
+                                @if ( $todo->completed)
+                                    <del>{{ $todo->name }}</del> 
+                                    <a href="{{route('todos.show', $todo->id)}}" class="btn btn-primary btn-sm float-right mr-2">View</a>
+                                @else
+                                    {{ $todo->name }}
                                     <a href="{{route('todos.complete', $todo->id)}}" class="btn btn-secondary btn-sm float-right text-white">complete</a>
+                                    <a href="{{route('todos.show', $todo->id)}}" class="btn btn-primary btn-sm float-right mr-2">View</a>
                                 @endif
                                 
-                                <a href="{{route('todos.show', $todo->id)}}" class="btn btn-primary btn-sm float-right mr-2">View</a>
                             </li>
                         @endforeach
                     </ul>
