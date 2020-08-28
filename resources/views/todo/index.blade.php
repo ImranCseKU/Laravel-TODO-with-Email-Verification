@@ -20,7 +20,11 @@
                             <li class="list-group-item">
                                 {{ $todo->name }}
 
-                            <a href="{{route('todos.show', $todo->id)}}" class="btn btn-primary btn-sm float-right">View</a>
+                                @if ( !$todo->completed)
+                                    <a href="{{route('todos.complete', $todo->id)}}" class="btn btn-secondary btn-sm float-right text-white">complete</a>
+                                @endif
+                                
+                                <a href="{{route('todos.show', $todo->id)}}" class="btn btn-primary btn-sm float-right mr-2">View</a>
                             </li>
                         @endforeach
                     </ul>
@@ -30,4 +34,3 @@
     </div>
 
 @endsection
-

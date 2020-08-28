@@ -79,7 +79,12 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
+
+            @if ( session()->has('success') )
+                <div class="alert alert-success text-center font-weight-bold"> {{ session('success') }} </div>
+            
+            @endif
             @yield('content')
         </main>
     </div>

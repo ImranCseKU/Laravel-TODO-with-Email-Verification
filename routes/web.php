@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('todos', 'TodoController')->middleware('auth');
+Route::get('todos/{todo}/complete', 'Todocontroller@complete')->name('todos.complete')->middleware('auth');
