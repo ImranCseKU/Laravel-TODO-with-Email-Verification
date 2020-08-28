@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTodoFormValidation;
 use Illuminate\Http\Request;
 use App\Todo;
+use Illuminate\Support\Facades\Validator;
 
 class TodoController extends Controller
 {
@@ -35,8 +36,19 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTodoFormValidation $request)
+    public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required|max:40',
+            'description'=> 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $data = request()->except('_token');
 
         $todo = new Todo();
@@ -68,9 +80,9 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Todo $todo)
     {
-        //
+        return view('todo.edit')->with('todo', $todo);
     }
 
     /**
@@ -80,9 +92,16 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(StoreTodoFormValidation $request, Todo $todo)
+    {  
+        $data = request()->except('_token');
+
+        $todo->name = $data['name'];
+        $todo->description = $data['description'];
+        $todo->save();
+        
+        return redirect()->route('todos.index');
+
     }
 
     /**

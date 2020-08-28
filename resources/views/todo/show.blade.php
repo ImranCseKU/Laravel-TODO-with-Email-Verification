@@ -19,7 +19,7 @@
 
             </div>
 
-            <a href="" class="btn btn-info my-2">Edit</a>
+            <a href="{{route('todos.edit', $todo->id)}}" class="btn btn-info my-2">Edit</a>
             <a href="" class="btn btn-danger my-2">Delete</a>
 
         </div>
