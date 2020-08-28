@@ -2,7 +2,7 @@
 
 ## Laravel TODO Application
 
-To build this application i used Laravel 7 where i performed simple CRUD operation. All the features of Laravel that I have used in this application are listed below-
+To build this application i have used Laravel 7 where i have performed simple CRUD operation. All the features of Laravel that I have used in this application are listed below-
 
 - Blade templete
 - Migration & Model
